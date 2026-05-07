@@ -14,7 +14,7 @@ def run(script):
     print(f"\n[{script.name}]")
     result = subprocess.run(
         [sys.executable, str(script)],
-        capture_output=True, text=True, encoding='utf-8'
+        capture_output=True, text=True, encoding='utf-8', errors='replace'
     )
     if result.stdout:
         print(result.stdout.strip())
@@ -27,7 +27,7 @@ def main():
     print("Starter dagligt nyhedsbrev...")
     for script in SCRIPTS:
         run(script)
-    print("\n✓ Nyhedsbrev sendt!")
+    print("\nNyhedsbrev sendt!")
 
 
 if __name__ == '__main__':
