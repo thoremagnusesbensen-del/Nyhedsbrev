@@ -58,15 +58,11 @@ def text_box(key, article):
     _, accent, bg_light = STYLES.get(key, ('#f0f0f0', '#333', '#fafafa'))
     body = article.get('body', '') or article.get('summary', '')
 
-    # Begræns til ~20 linjer (ca. 1800 tegn)
-    if len(body) > 1800:
-        body = body[:1800].rsplit(' ', 1)[0] + ' …'
+    # ~40 tokens ≈ 300 tegn
+    if len(body) > 300:
+        body = body[:300].rsplit(' ', 1)[0] + ' …'
 
-    # Lav linjeskift om til HTML
-    body_html = ''.join(
-        f'<p style="margin:0 0 8px 0;">{line}</p>'
-        for line in body.split('\n\n') if line.strip()
-    )
+    body_html = f'<p style="margin:0;">{body}</p>' if body.strip() else ''
 
     if not body_html:
         body_html = '<p style="margin:0;color:#aaa;">Ingen tekst tilgængelig.</p>'
