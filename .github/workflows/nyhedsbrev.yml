@@ -25,7 +25,7 @@ jobs:
         run: |
           echo "GMAIL_USER=${{ secrets.GMAIL_USER }}" >> .env
           echo "GMAIL_APP_PASSWORD=${{ secrets.GMAIL_APP_PASSWORD }}" >> .env
-          echo "NEWSLETTER_TO=${{ secrets.NEWSLETTER_TO }}" >> .env
+          echo "NEWSLETTER_TO=thoremagnusesbensen@gmail.com" >> .env
 
       - name: Kør nyhedsbrev
         run: python execution/run_daily_newsletter.py
